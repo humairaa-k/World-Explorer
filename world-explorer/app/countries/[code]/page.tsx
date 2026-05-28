@@ -41,7 +41,7 @@ export default async function CountryDetailsPage({ params }: PageProps) {
 
             <div className="relative">
               <img
-                src={country.flags.png}
+                src={country.flags.svg}
                 alt={country.flags.alt || country.name.common}
                 className="h-full w-full object-cover min-h-[320px]"
               />

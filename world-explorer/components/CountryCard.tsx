@@ -1,6 +1,8 @@
 import { Country } from "@/types/country"
 import Link from "next/link"
 
+import { ArrowRight } from "lucide-react"
+
 interface CountryCardProps {
   country: Country
 }
@@ -38,11 +40,11 @@ export default function CountryCard({ country }: CountryCardProps) {
         </div>
 
         <Link
-          href={`/countries/${country.cca3}`}
-          className="mt-auto w-full text-center bg-gray-900 text-white text-sm font-semibold py-3 rounded-2xl hover:bg-blue-600 transition-colors duration-300"
-        >
-          Explore Country →
-        </Link>
+         href={`/countries/${country.cca3}`}
+         className="mt-auto flex items-center justify-center gap-2 w-full bg-gray-900 text-white text-sm font-semibold py-3 rounded-2xl hover:bg-blue-600 transition-colors duration-300">
+         Explore Country
+         <ArrowRight className="w-5 h-5" />
+       </Link>
       </div>
     </div>
   )
