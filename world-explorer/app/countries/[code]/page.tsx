@@ -12,6 +12,8 @@ interface PageProps {
   }>
 }
 
+// This page fetches fresh data every time.
+
 export default async function CountryDetailsPage({ params }: PageProps) {
 
   const { code } = await params
