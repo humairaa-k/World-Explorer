@@ -13,7 +13,7 @@ export default function CountryCard({ country }: CountryCardProps) {
       
       <div className="relative h-52 overflow-hidden">
         <img
-          src={country.flags.png}
+          src={country.flags.svg}
           alt={country.name.common}
           className="w-full h-full object-cover"
         />

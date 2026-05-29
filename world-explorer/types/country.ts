@@ -9,7 +9,7 @@ export interface Country {
   subregion?: string
   population: number
   flags: {
-    png: string
+    svg: string
     alt?: string
   } 
  languages?: {
