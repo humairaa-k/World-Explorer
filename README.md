@@ -56,7 +56,25 @@ types/ - TypeScript interfaces
 ## Screenshots
 
 ### Home Page
-![Home Page](./public/screenshots/homepage.png)
+![Home Page](./world-explorer/public/screenshots/homepage.png)
+![Countries Page](./world-explorer/public/screenshots/hmpg-sm.png)
+
+### Countries Page
+![Countries Page](./world-explorer/public/screenshots/countries.png)
+
+### Search Page
+![Countries Page](./world-explorer/public/screenshots/searchpg.png)
+![Countries Page](./world-explorer/public/screenshots/searchpg-sm.png)
+
+### About Page
+![Countries Page](./world-explorer/public/screenshots/about.png)
+
+### Detail Page
+![Countries Page](./world-explorer/public/screenshots/detailpg.png)
+
+![Countries Page](./world-explorer/public/screenshots/detail-sm.png)
+
+
 
 Author
 
