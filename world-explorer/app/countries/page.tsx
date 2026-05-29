@@ -4,7 +4,8 @@ import CountryCard from "@/components/CountryCard"
 export default async function CountriesPage() {
   const res = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags,cca3", {
     cache: "force-cache",
-  })
+  }
+ )
 
   const countries: Country[] = await res.json()
   console.log(countries)  

@@ -66,18 +66,17 @@ export default function Navbar() {
 
         </div>
 
-        {/* Mobile Menu */}
-        {open && (
-
-          <div className=" lg:hidden flex flex-col gap-4 mt-6 pb-4">
-
-            <Link href="/">Home</Link>
-            <Link href="/countries">Countries</Link>
-            <Link href="/search">Search</Link>
-            <Link href="/about">About</Link>
-
-          </div>
-        )}
+      {/* Mobile menu */}
+       {open && (
+         <div className="lg:hidden flex flex-col gap-4 mt-6 pb-4 border-t border-gray-100 pt-4">
+       
+           <Link href="/" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Home</Link>
+           <Link href="/countries" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Countries</Link>
+           <Link href="/search" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Search</Link>
+           <Link href="/about" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>About</Link>
+        
+         </div>
+       )}
 
       </nav>
     </header>
