@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# World Explorer
 
-## Getting Started
+World Explorer is a Next.js project that allows users to explore countries around the world. Users can view country details, search for countries, and filter them by region and population.
 
-First, run the development server:
+
+## Features
+
+- Built with Next.js App Router
+- File-based routing
+- Server and Client Components
+- Dynamic routes for country details
+- Data fetching using REST Countries API
+- Search functionality
+- Region filtering
+- Population sorting
+- Loading UI using loading.tsx
+- Custom 404 page using not-found.tsx
+- Responsive design with Tailwind CSS
+
+
+## API Used
+
+REST Countries API  
+https://restcountries.com/v3.1/all
+
+## Pages
+
+- Home Page: Introduction to the project
+- Countries Page: Displays a list of countries with filters and sorting
+- Country Details Page: Shows detailed information about a selected country
+- Search Page: Allows users to search countries by name
+- About Page: Project overview and technologies used
+
+
+## Installation
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Run Locally
+
+After installing dependencies, start the development server:
+
+npm run dev
+
+Then open:
+http://localhost:3000
+
+Project Structure
+app/ - Pages and routing
+components/ - Reusable UI components
+types/ - TypeScript interfaces
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Home Page
+![Home Page](./public/screenshots/homepage.png)
 
-## Learn More
+Author
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built as a learning project for practicing Next.js and frontend development.
