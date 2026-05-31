@@ -1,52 +1,46 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import CountryCard from "./CountryCard"
-import { Country } from "@/types/country"
-import CountriesFilters from "./CountriesFilters"
+import { useState } from 'react';
+import CountryCard from './CountryCard';
+import { Country } from '@/types/country';
+import CountriesFilters from './CountriesFilters';
 
-type CountryProp = { countries: Country[] }
+type CountryProp = { countries: Country[] };
 
-export default function CountriesList({countries} : CountryProp) {
-    const [selectedRegion, setSelectedRegion ] = useState("All")
-    const [sortOrder, setSortOrder ] = useState("default")
+type SortOrder = 'default' | 'high' | 'low';
 
-    let filteredCountries = 
-      selectedRegion === "All" 
-      ? countries 
-      : countries.filter(
-        (country) => country.region === selectedRegion
-      )
+export default function CountriesList({ countries }: CountryProp) {
+  const [selectedRegion, setSelectedRegion] = useState('All');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('default');
+  const [favorites, setFavorites] = useState<string[]>([]);
 
-      if(sortOrder === "high") {
-        filteredCountries = [...filteredCountries].sort(
-          (a, b) => b.population - a.population
-        )
-      }
+  let filteredCountries =
+    selectedRegion === 'All'
+      ? countries
+      : countries.filter((country) => country.region === selectedRegion);
 
-      if(sortOrder === "low") {
-        filteredCountries = [...filteredCountries].sort(
-          
-        )
-      }
+  if (sortOrder === 'high') {
+    filteredCountries = [...filteredCountries].sort((a, b) => b.population - a.population);
+  }
+
+  if (sortOrder === 'low') {
+    filteredCountries = [...filteredCountries].sort((a, b) => (a.population - b.population));
+  }
 
   return (
-   <>
-    <CountriesFilters
-    selectedRegion={selectedRegion}
-    setSelectedRegion={setSelectedRegion}
-    sortOrder={sortOrder}
-    setSortOrder={setSortOrder}
-    />
+    <>
+      <CountriesFilters
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+      />
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    {filteredCountries.slice(0, 20).map((country) => (
-      <CountryCard key={country.cca3} country={country} />
-    ))}
-  </div>
-   </>
-   
-   
-  )
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {filteredCountries.slice(0, 20).map((country) => (
+          <CountryCard key={country.cca3} country={country} />
+        ))}
+      </div>
+    </>
+  );
 }
-

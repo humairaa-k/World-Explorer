@@ -1,84 +1,90 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
-import { Globe } from "lucide-react"
+import { Globe } from 'lucide-react';
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <div className=" bg-slate-900 text-white p-2 rounded-xl">
+              <Globe className="w-6 h-6" />
+            </div>
 
-          <Link href="/"
-          className="flex items-center gap-3">
-  
-          <div className=" bg-slate-900 text-white p-2 rounded-xl">
-           <Globe className="w-6 h-6" />
+            <div>
+              <h1 className="text-2xl font-black text-slate-900 sm:text-2xl lg:text-3xl">
+                World Explorer
+              </h1>
+
+              <p className="text-xs text-slate-500">Discover the world</p>
+            </div>
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-8">
+            <Link href="/" className="hover:text-blue-600 transition">
+              Home
+            </Link>
+
+            <Link href="/countries" className="hover:text-blue-600 transition">
+              Countries
+            </Link>
+
+            <Link href="/search" className="hover:text-blue-600 transition">
+              Search
+            </Link>
+
+            <Link href="/about" className="hover:text-blue-600 transition">
+              About
+            </Link>
           </div>
 
-        <div>
-         <h1 className="text-2xl font-black text-slate-900 text-xl sm:text-2xl lg:text-3xl">
-           World Explorer
-         </h1>
-     
-         <p className="text-xs text-slate-500">
-           Discover the world
-         </p>
-       </div>
-
-     </Link>
-      
-      <div className="hidden lg:flex items-center gap-8">
-
-        <Link href="/" className="hover:text-blue-600 transition">
-          Home
-        </Link>
-
-        <Link href="/countries" className="hover:text-blue-600 transition">
-          Countries
-        </Link>
-
-        <Link href="/search" className="hover:text-blue-600 transition">
-          Search
-        </Link>
-
-        <Link href="/about" className="hover:text-blue-600 transition">
-          About
-        </Link>
-
-      </div>
-
-      {/* Mobile btn */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="lg:hidden">
-        {open ? (
-          <X className="w-7 h-7" />
-        ) : (
-          <Menu className="w-7 h-7" />
-        )}
-      </button>
-
+          {/* Mobile btn */}
+          <button onClick={() => setOpen(!open)} className="lg:hidden">
+            {open ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          </button>
         </div>
 
-      {/* Mobile menu */}
-       {open && (
-         <div className="lg:hidden flex flex-col gap-4 mt-6 pb-4 border-t border-gray-100 pt-4">
-       
-           <Link href="/" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Home</Link>
-           <Link href="/countries" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Countries</Link>
-           <Link href="/search" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>Search</Link>
-           <Link href="/about" className="text-gray-700 font-medium px-4 py-1" onClick={() => setOpen(false)}>About</Link>
-        
-         </div>
-       )}
-
+        {/* Mobile menu */}
+        {open && (
+          <div className="lg:hidden flex flex-col gap-4 mt-6 pb-4 border-t border-gray-100 pt-4">
+            <Link
+              href="/"
+              className="text-gray-700 font-medium px-4 py-1"
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/countries"
+              className="text-gray-700 font-medium px-4 py-1"
+              onClick={() => setOpen(false)}
+            >
+              Countries
+            </Link>
+            <Link
+              href="/search"
+              className="text-gray-700 font-medium px-4 py-1"
+              onClick={() => setOpen(false)}
+            >
+              Search
+            </Link>
+            <Link
+              href="/about"
+              className="text-gray-700 font-medium px-4 py-1"
+              onClick={() => setOpen(false)}
+            >
+              About
+            </Link>
+          </div>
+        )}
       </nav>
     </header>
-  )
+  );
 }

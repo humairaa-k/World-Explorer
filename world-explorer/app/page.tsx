@@ -1,16 +1,14 @@
-import HeroSection from "@/components/HeroSection"
+import HeroSection from '@/components/HeroSection';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Hero Section */}
+      <HeroSection />
 
-     {/* Hero Section */}
-    <HeroSection/>
-    
       {/* Stats Section */}
       <section className="max-w-6xl mx-auto px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          
           <div className="bg-white rounded-3xl p-8 text-center shadow-sm border border-gray-100">
             <h2 className="text-4xl font-black text-gray-900">195+</h2>
             <p className="text-gray-500 mt-1">Countries</p>
@@ -30,15 +28,15 @@ export default function Home() {
             <h2 className="text-4xl font-black text-gray-900">100+</h2>
             <p className="text-gray-500 mt-1">Languages</p>
           </div>
-
         </div>
       </section>
 
       {/* Features Section */}
       <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
-        <h2 className="text-3xl font-black text-gray-900 mb-10 text-center">What You Can Explore</h2>
+        <h2 className="text-3xl font-black text-gray-900 mb-10 text-center">
+          What You Can Explore
+        </h2>
         <div className="grid md:grid-cols-3 gap-6">
-
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
             <span className="text-4xl">🏳️</span>
             <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Flags</h3>
@@ -74,10 +72,8 @@ export default function Home() {
             <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Maps</h3>
             <p className="text-gray-500">Open any country directly in Google Maps.</p>
           </div>
-
         </div>
       </section>
-
     </main>
-  )
+  );
 }
