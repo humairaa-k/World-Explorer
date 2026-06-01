@@ -6,6 +6,10 @@ type FiltersProps = {
 
   sortOrder: SortOrder;
   setSortOrder: React.Dispatch<React.SetStateAction<SortOrder>>;
+
+   showFavorites: boolean;
+  setShowFavorites: React.Dispatch<React.SetStateAction<boolean>>;
+
 };
 
 export default function CountriesFilters({
@@ -13,6 +17,8 @@ export default function CountriesFilters({
   setSelectedRegion,
   sortOrder,
   setSortOrder,
+  showFavorites,
+  setShowFavorites
 }: FiltersProps) {
   return (
     <div>
@@ -75,6 +81,29 @@ export default function CountriesFilters({
             <option value="low">Lowest Population</option>
           </select>
         </div>
+
+        <div className="w-full sm:w-64 flex flex-col gap-2">
+  <label className="text-sm font-semibold text-slate-700">
+    Favorites Filter
+  </label>
+
+  <div className="flex items-center gap-2 mt-2.5 ml-2">
+    <input
+      type="checkbox"
+      id="favorites"
+      checked={showFavorites}
+      onChange={() => setShowFavorites(!showFavorites)}
+      className="w-4 h-4 accent-red-500 cursor-pointer"
+    />
+
+    <label
+      htmlFor="favorites"
+      className="text-sm font-medium text-gray-700 cursor-pointer"
+    >
+      Show Favorites Only
+    </label>
+  </div>
+</div>
       </div>
     </div>
   );

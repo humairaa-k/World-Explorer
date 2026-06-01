@@ -12,7 +12,6 @@ export default async function CountriesPage() {
   );
 
   const countries: Country[] = await res.json();
-  console.log(countries);
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-10">

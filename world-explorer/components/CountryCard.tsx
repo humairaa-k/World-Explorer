@@ -2,12 +2,20 @@ import { Country } from '@/types/country';
 import Link from 'next/link';
 
 import { ArrowRight } from 'lucide-react';
+import { Heart } from "lucide-react";
 
 interface CountryCardProps {
   country: Country;
+  toggleFavorite: (id: string) => void
+  favorites: string[] 
 }
 
-export default function CountryCard({ country }: CountryCardProps) {
+
+
+export default function CountryCard({ country,toggleFavorite, favorites }: CountryCardProps) {
+
+   const isFavorite = favorites.includes(country.cca3)
+
   return (
     <div className="group relative bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-400 flex flex-col">
       <div className="relative h-52 overflow-hidden">
@@ -23,7 +31,20 @@ export default function CountryCard({ country }: CountryCardProps) {
       </div>
 
       <div className="p-6 flex flex-col gap-4 flex-1">
-        <h2 className="text-xl font-bold text-gray-900 leading-tight">{country.name.common}</h2>
+
+       <div className='flex justify-between items-center'>
+           <h2 className="text-xl font-bold text-gray-900 leading-tight">{country.name.common}</h2>
+
+           <button onClick={()=> toggleFavorite(country.cca3)}>
+             <Heart 
+             size={20}
+              className={
+                isFavorite ?
+                "text-red-500 fill-red-500"
+                : "text-gray-400"
+              }/>
+           </button>
+       </div>
 
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-sm text-gray-500">
