@@ -1,15 +1,34 @@
 import { Country } from '@/types/country';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ArrowLeft, MapPinned } from 'lucide-react';
+import { Metadata } from "next";
 
-import { ArrowLeft } from 'lucide-react';
-import { MapPinned } from 'lucide-react';
-
-// in next.js params is a Promise so we type it as promise
 interface PageProps {
   params: Promise<{
     code: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { code } = await params;
+
+  const res = await fetch(
+    `https://restcountries.com/v3.1/alpha/${code}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) return { title: "Country not found | World Explorer" };
+
+  const data = await res.json();
+  const country = data[0];
+
+  if (!country) return { title: "Country not found | World Explorer" };
+
+  return {
+    title: `${country.name.common} | World Explorer`,
+    description: `Explore details about ${country.name.common}, including capital, population, region, languages and more.`,
+  };
 }
 
 export default async function CountryDetailsPage({ params }: PageProps) {
@@ -17,12 +36,13 @@ export default async function CountryDetailsPage({ params }: PageProps) {
 
   const res = await fetch(
     `https://restcountries.com/v3.1/alpha/${code}?fields=name,capital,region,subregion,population,flags,languages,currencies,timezones,maps`,
-    { cache: 'no-store' } // fresh data every time
+    { cache: 'no-store' }
   );
 
   if (!res.ok) notFound();
 
-  const country: Country = await res.json();
+  const data = await res.json();
+  const country: Country = Array.isArray(data) ? data[0] : data;
 
   if (!country) notFound();
 
@@ -75,8 +95,8 @@ export default async function CountryDetailsPage({ params }: PageProps) {
                 <Info title="Timezone" value={country.timezones.join(', ') || 'N/A'} />
               </div>
 
-              <a
-                href={country.maps.googleMaps}
+              
+              <a href={country.maps.googleMaps}
                 target="_blank"
                 className="mt-6 bg-gray-900 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl font-semibold transition w-fit inline-flex items-center gap-2"
               >
@@ -91,7 +111,6 @@ export default async function CountryDetailsPage({ params }: PageProps) {
   );
 }
 
-//reusable info component
 function Info({ title, value }: { title: string; value: string }) {
   return (
     <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
