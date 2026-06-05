@@ -6,15 +6,15 @@ import { Heart } from "lucide-react";
 
 interface CountryCardProps {
   country: Country;
-  toggleFavorite: (id: string) => void
-  favorites: string[] 
+  toggleFavorite?: (id: string) => void
+  favorites?: string[] 
 }
 
 
 
 export default function CountryCard({ country,toggleFavorite, favorites }: CountryCardProps) {
 
-   const isFavorite = favorites.includes(country.cca3)
+   const isFavorite = favorites?.includes(country.cca3) ?? false
 
   return (
     <div className="group relative bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-400 flex flex-col">
@@ -35,7 +35,7 @@ export default function CountryCard({ country,toggleFavorite, favorites }: Count
        <div className='flex justify-between items-center'>
            <h2 className="text-xl font-bold text-gray-900 leading-tight">{country.name.common}</h2>
 
-           <button onClick={()=> toggleFavorite(country.cca3)}>
+           <button onClick={()=> toggleFavorite?.(country.cca3)}>
              <Heart 
              size={20}
               className={
