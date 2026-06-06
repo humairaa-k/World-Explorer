@@ -1,3 +1,5 @@
+import { useFavorites } from "@/context/FavoritesContext";
+
 type SortOrder = 'default' | 'high' | 'low';
 
 type FiltersProps = {
@@ -7,9 +9,6 @@ type FiltersProps = {
   sortOrder: SortOrder;
   setSortOrder: React.Dispatch<React.SetStateAction<SortOrder>>;
 
-   showFavorites: boolean;
-  setShowFavorites: React.Dispatch<React.SetStateAction<boolean>>;
-
 };
 
 export default function CountriesFilters({
@@ -17,9 +16,10 @@ export default function CountriesFilters({
   setSelectedRegion,
   sortOrder,
   setSortOrder,
-  showFavorites,
-  setShowFavorites
 }: FiltersProps) {
+
+ const { showFavoritesOnly, setShowFavoritesOnly } = useFavorites();
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-10 sm:justify-end gap-4 mb-15">
@@ -91,8 +91,8 @@ export default function CountriesFilters({
     <input
       type="checkbox"
       id="favorites"
-      checked={showFavorites}
-      onChange={() => setShowFavorites(!showFavorites)}
+      checked={showFavoritesOnly}
+      onChange={() => setShowFavoritesOnly(!showFavoritesOnly)}
       className="w-4 h-4 accent-red-500 cursor-pointer"
     />
 

@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CountryCard from './CountryCard';
 import { Country } from '@/types/country';
 import CountriesFilters from './CountriesFilters';
 import FavoriteCountries from './FavoriteCountries';
+import { useFavorites } from '@/context/FavoritesContext';
+
 
 type CountryProp = { countries: Country[] };
 
@@ -13,9 +15,9 @@ type SortOrder = 'default' | 'high' | 'low';
 export default function CountriesList({ countries }: CountryProp) {
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [sortOrder, setSortOrder] = useState<SortOrder>('default');
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [isLoaded, setIsLoaded ] = useState(false);
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+
+   const { favorites, showFavoritesOnly, } = useFavorites();
+
 
   let filteredCountries =
     selectedRegion === 'All'
@@ -30,34 +32,8 @@ export default function CountriesList({ countries }: CountryProp) {
     filteredCountries = [...filteredCountries].sort((a, b) => (a.population - b.population));
   }
  
-   const favoriteCountries = countries.filter((country) => 
-   favorites.includes(country.cca3));
-
-
-  const toggleFavorite = ((id: string) => {
-   if(favorites.includes(id)) {
-    setFavorites(
-        favorites.filter((favoriteId) => favoriteId !== id)
-      );
-   } else {
-    setFavorites([...favorites, id]) 
-   }
-  })
-
-   useEffect(() => {
-   const storedFavorites = localStorage.getItem("favorites");
-   if(storedFavorites) {
-    setFavorites(JSON.parse(storedFavorites))
-   }
-
-   setIsLoaded(true)
-  },[])
-
-  useEffect(() => {
-    if(!isLoaded) return;
-   localStorage.setItem("favorites", JSON.stringify(favorites));
- }, [favorites, isLoaded]);
-
+     const favoriteCountries = countries.filter((country) => 
+     favorites.includes(country.cca3));
  
 
   return (
@@ -67,8 +43,6 @@ export default function CountriesList({ countries }: CountryProp) {
         setSelectedRegion={setSelectedRegion}
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
-        showFavorites={showFavoritesOnly}
-        setShowFavorites={setShowFavoritesOnly}
       />
 
     {showFavoritesOnly ? (
@@ -88,8 +62,6 @@ export default function CountriesList({ countries }: CountryProp) {
           <CountryCard 
           key={country.cca3}
           country={country} 
-          toggleFavorite={toggleFavorite}
-          favorites={favorites}
           />
         ))}
       </div>

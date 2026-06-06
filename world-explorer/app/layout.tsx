@@ -6,6 +6,7 @@ import './globals.css';
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { FavoritesProvider } from '@/context/FavoritesContext';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -21,9 +22,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${poppins.className} min-h-screen flex flex-col antialiased`}>
+       <FavoritesProvider>
         <Navbar />
         <main>{children}</main>
         <Footer />
+      </FavoritesProvider>
       </body>
     </html>
   );
